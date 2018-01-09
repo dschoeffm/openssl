@@ -36,6 +36,7 @@ extern "C" {
 # define BIO_TYPE_NONE             0
 # define BIO_TYPE_MEM            ( 1|BIO_TYPE_SOURCE_SINK)
 # define BIO_TYPE_FILE           ( 2|BIO_TYPE_SOURCE_SINK)
+# define BIO_TYPE_MEMQ           ( 3|BIO_TYPE_SOURCE_SINK)
 
 # define BIO_TYPE_FD             ( 4|BIO_TYPE_SOURCE_SINK|BIO_TYPE_DESCRIPTOR)
 # define BIO_TYPE_SOCKET         ( 5|BIO_TYPE_SOURCE_SINK|BIO_TYPE_DESCRIPTOR)
