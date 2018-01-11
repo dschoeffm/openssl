@@ -85,7 +85,7 @@ static int memQ_buf_free(BIO *a, int free_all)
             struct memQHead_st *bb = (struct memQHead_st *)a->ptr;
 
             if (bb != NULL) {
-            	struct memQElem_st* elem = bb->elem;
+				struct memQElem_st* elem = bb->elem;
 				while(elem != NULL){
 					struct memQElem_st* oldElem = elem;
 					elem = elem->next;
