@@ -1,17 +1,17 @@
-#include <iostream>
-#include <cstring>
 #include <cassert>
+#include <cstring>
+#include <iostream>
 
 #include <openssl/bio.h>
 #include <openssl/err.h>
 
 using namespace std;
 
-int main(int argc, char** argv){
-	(void) argc;
-	(void) argv;
+int main(int argc, char **argv) {
+	(void)argc;
+	(void)argv;
 
-	BIO* testBio;
+	BIO *testBio;
 	testBio = BIO_new(BIO_s_memQ());
 
 	char block1[50];
@@ -29,16 +29,23 @@ int main(int argc, char** argv){
 	assert(BIO_read(testBio, buf, 100) == -1);
 	assert(BIO_read(testBio, buf, 100) == -1);
 
+	assert(BIO_eof(testBio) == true);
+
 	BIO_write(testBio, block1, 50);
+
+	assert(BIO_eof(testBio) == false);
+
 	BIO_write(testBio, block2, 30);
 
+	assert(BIO_eof(testBio) == false);
+
 	assert(BIO_read(testBio, buf, 100) == 50);
-	for(int i=0; i<50; i++){
+	for (int i = 0; i < 50; i++) {
 		assert(buf[i] == 1);
 	}
 
 	assert(BIO_read(testBio, buf, 100) == 30);
-	for(int i=0; i<30; i++){
+	for (int i = 0; i < 30; i++) {
 		assert(buf[i] == 2);
 	}
 
@@ -47,7 +54,7 @@ int main(int argc, char** argv){
 	BIO_write(testBio, block1, 50);
 
 	assert(BIO_read(testBio, buf, 100) == 50);
-	for(int i=0; i<50; i++){
+	for (int i = 0; i < 50; i++) {
 		assert(buf[i] == 1);
 	}
 
@@ -55,12 +62,12 @@ int main(int argc, char** argv){
 	BIO_write(testBio, block3, 90);
 
 	assert(BIO_read(testBio, buf, 100) == 30);
-	for(int i=0; i<30; i++){
+	for (int i = 0; i < 30; i++) {
 		assert(buf[i] == 2);
 	}
 
 	assert(BIO_read(testBio, buf, 100) == 90);
-	for(int i=0; i<90; i++){
+	for (int i = 0; i < 90; i++) {
 		assert(buf[i] == 3);
 	}
 
